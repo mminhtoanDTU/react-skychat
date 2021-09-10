@@ -1,0 +1,113 @@
+.side-bar {
+    width: 330px;
+    height: 100vh;
+    padding: 10px;
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--gray-color);
+
+        & span {
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        padding: 16px 10px;
+        position: relative;
+
+        & .name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            margin-left: 10px;
+        }
+
+        & .icon {
+            margin-left: auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #555;
+            transition: all .25s ease-in;
+
+            &:hover {
+                background-color: var(--gray-color);
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__add {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+
+        & .text {
+            color: #555;
+            font-size: 16px;
+        }
+
+        & .icon {
+            position: relative;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            color: var(--primary-color);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background-color: currentColor;
+                opacity: .1;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    &__list {
+        height: calc(100vh - 284px);
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+    }
+}

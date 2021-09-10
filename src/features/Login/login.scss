@@ -1,0 +1,54 @@
+.login {
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 20px 15px;
+    margin-top: 50px;
+    border-radius: 10px;
+
+    &-wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-size: 30px;
+        color: var(--first-color);
+        line-height: 1.4;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    &__btn {
+        display: inline-block;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 1px 2px 1px;
+        padding: 15px 20px 15px 50px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        transition: all .15s ease-in;
+
+        &:hover {
+            background-color: #efefef;
+        }
+
+        & .icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+
+            &.facebook {
+                color: #1877F2;
+            }
+        }
+
+        & span {
+            font-weight: 500;
+            font-size: 16px;
+            color: #757575;
+        }
+
+    }
+}

@@ -1,0 +1,66 @@
+.item-message {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+
+
+    & .msg {
+        padding: 15px 15px;
+        background-color: var(--white-color);
+        border-radius: 15px;
+        color: var(--text-color);
+        position: relative;
+
+
+        &:hover+.times {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        &::after {
+            position: absolute;
+            content: "";
+            left: -10px;
+            bottom: 0;
+            border-width: 20px;
+            border-style: solid;
+            border-color: transparent transparent #fff transparent;
+
+        }
+    }
+
+    & .times {
+        background-color: #5c5c5ca2;
+        color: var(--white-color);
+        font-size: 13px;
+
+        margin-left: 10px;
+        padding: 5px;
+        border-radius: 8px;
+
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease-in;
+        transition-delay: .4s;
+    }
+
+    &.sender {
+        align-self: flex-end;
+        margin-right: 20px;
+
+        & .msg {
+            order: 1;
+            margin-left: 10px;
+            background-color: #D1D2E4;
+
+            &::after {
+                left: initial;
+                right: -10px;
+                border-color: transparent transparent #D1D2E4 transparent;
+
+            }
+        }
+    }
+}

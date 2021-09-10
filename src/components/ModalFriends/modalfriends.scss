@@ -1,0 +1,77 @@
+.modal-friends {
+    position: fixed;
+    top: 75px;
+    left: -330px;
+    bottom: 0;
+    width: 330px;
+
+    padding: 0 10px;
+
+    background-color: #fff;
+    transition: all .3s ease-in-out;
+
+    &.active {
+        left: 0px;
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+
+        & .title {
+            color: var(--text-color);
+        }
+
+        & .icon {
+            font-size: 25px;
+            color: var(--text-color);
+            width: 35px;
+            height: 35px;
+            border-radius: 35px;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: background .25s ease;
+
+            &:hover {
+                background: #efefef;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__list {
+        padding-top: 16px;
+        height: calc(100vh - 181px);
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+    }
+
+    @media screen and (max-width: 374px) {}
+
+}
+
+.modal-friends__box {}

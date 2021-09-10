@@ -1,0 +1,62 @@
+.box-input {
+    position: relative;
+
+    width: calc(100% - 20px);
+    margin: 10px auto;
+
+    & .input-message {
+        border-radius: 8px;
+        border: none;
+        outline: none;
+
+        width: 100%;
+        padding: 18px;
+        font-size: 16px;
+        color: var(--text-color);
+
+    }
+
+    & .btn-send {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 40px;
+        width: 40px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: var(--white-color);
+        background-color: var(--primary-color);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all .15s linear;
+
+        &:hover {
+            background: var(--primary-hover-color);
+        }
+
+        &:active {
+            background: var(--primary-active-color);
+        }
+    }
+
+    & .icon-smile {
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        color: #aaa;
+        cursor: pointer;
+        padding: 8px;
+        transition: color .15s ease-in-out;
+
+        &:hover {
+            color: var(--primary-color);
+
+        }
+    }
+}

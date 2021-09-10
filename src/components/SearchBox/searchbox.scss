@@ -1,0 +1,34 @@
+.search-box {
+    position: relative;
+
+    &__input {
+        border: none;
+        border-radius: 50px;
+        outline: none;
+        padding: 10px 40px 10px 20px;
+        width: 100%;
+
+        background: var(--gray-color);
+        color: var(--text-color);
+        font-size: 16px;
+        line-height: 1.4;
+
+        &::placeholder {
+            color: #888;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #555;
+        cursor: pointer;
+        transition: color .25s linear;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+}
