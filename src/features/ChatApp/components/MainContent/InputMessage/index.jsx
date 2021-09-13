@@ -64,7 +64,7 @@ function InputMessage(props) {
             </div>
             <div
                 className="icon-smile"
-                onClick={() => handleOpenEmoji()}
+            // onClick={() => handleOpenEmoji()}
             >
                 <IoHappy
                     size="22px"
