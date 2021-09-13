@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/react-skychat/static/css/main.9937164a.chunk.css",
-    "main.js": "/react-skychat/static/js/main.daddbbb4.chunk.js",
-    "main.js.map": "/react-skychat/static/js/main.daddbbb4.chunk.js.map",
+    "main.js": "/react-skychat/static/js/main.85f4db55.chunk.js",
+    "main.js.map": "/react-skychat/static/js/main.85f4db55.chunk.js.map",
     "runtime-main.js": "/react-skychat/static/js/runtime-main.db45380e.js",
     "runtime-main.js.map": "/react-skychat/static/js/runtime-main.db45380e.js.map",
-    "static/js/2.d8d2a012.chunk.js": "/react-skychat/static/js/2.d8d2a012.chunk.js",
-    "static/js/2.d8d2a012.chunk.js.map": "/react-skychat/static/js/2.d8d2a012.chunk.js.map",
+    "static/js/2.0f40d2f3.chunk.js": "/react-skychat/static/js/2.0f40d2f3.chunk.js",
+    "static/js/2.0f40d2f3.chunk.js.map": "/react-skychat/static/js/2.0f40d2f3.chunk.js.map",
     "index.html": "/react-skychat/index.html",
     "static/css/main.9937164a.chunk.css.map": "/react-skychat/static/css/main.9937164a.chunk.css.map",
-    "static/js/2.d8d2a012.chunk.js.LICENSE.txt": "/react-skychat/static/js/2.d8d2a012.chunk.js.LICENSE.txt",
+    "static/js/2.0f40d2f3.chunk.js.LICENSE.txt": "/react-skychat/static/js/2.0f40d2f3.chunk.js.LICENSE.txt",
     "static/media/intro-message.2e356f45.svg": "/react-skychat/static/media/intro-message.2e356f45.svg",
     "static/media/intro-welcome.6796104a.svg": "/react-skychat/static/media/intro-welcome.6796104a.svg",
     "static/media/user-place.aa5d0453.png": "/react-skychat/static/media/user-place.aa5d0453.png"
   },
   "entrypoints": [
     "static/js/runtime-main.db45380e.js",
-    "static/js/2.d8d2a012.chunk.js",
+    "static/js/2.0f40d2f3.chunk.js",
     "static/css/main.9937164a.chunk.css",
-    "static/js/main.daddbbb4.chunk.js"
+    "static/js/main.85f4db55.chunk.js"
   ]
 }
