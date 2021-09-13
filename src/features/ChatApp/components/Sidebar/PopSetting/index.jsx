@@ -3,31 +3,39 @@ import { auth } from '../../../../../firebase/configFirebase';
 import './popsetting.scss';
 import { useDispatch } from 'react-redux'
 import { logoutRemoveUser } from '../../../../../app/UserSlice'
+import { setRoomInfo } from '../../../../../app/RoomSlice';
+import { useSelector } from 'react-redux';
+import { Avatar } from '../../../../../components';
+import { FiLogOut } from 'react-icons/fi'
 
-function PopSetting({ setOpenSetting }) {
+function PopSetting() {
+    const { userInfo } = useSelector(state => state.user)
     const dispatch = useDispatch();
     const popSettingRef = useRef(null);
 
     const handleLogout = () => {
-        const action = logoutRemoveUser();
         auth.signOut();
-        dispatch(action);
+        dispatch(logoutRemoveUser());
+        dispatch(setRoomInfo({}))
     }
 
     return (
         <div ref={popSettingRef} className="pop-setting">
-            <p
+            <div
                 className="pop-setting__item"
                 onClick={() => console.log("Edit profile")}
             >
-                Edit profile
-            </p>
-            <p
+                <Avatar src={userInfo.photoURL} size={28} />
+                <span>{userInfo.displayName}</span>
+            </div>
+
+            <div
                 className="pop-setting__item"
                 onClick={() => handleLogout()}
             >
-                Logout
-            </p>
+                <FiLogOut className="icon" />
+                <span>Logout</span>
+            </div>
         </div>
     );
 }

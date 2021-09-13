@@ -1,14 +1,14 @@
 .modal-friends {
     position: fixed;
-    top: 75px;
+    top: 88px;
     left: -330px;
     bottom: 0;
     width: 330px;
-
     padding: 0 10px;
 
     background-color: #fff;
     transition: all .3s ease-in-out;
+    z-index: 99;
 
     &.active {
         left: 0px;
@@ -17,16 +17,29 @@
     &__top {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         padding: 16px 0;
 
-        & .title {
-            color: var(--text-color);
+        & .option-item {
+            font-size: 16px;
+            margin-right: 10px;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1.5;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+
+            &.active {
+                color: var(--text-color);
+                font-weight: 600;
+                border-color: var(--primary-color);
+            }
         }
 
         & .icon {
             font-size: 25px;
             color: var(--text-color);
+            margin-left: auto;
+
             width: 35px;
             height: 35px;
             border-radius: 35px;
@@ -46,8 +59,7 @@
     }
 
     &__list {
-        padding-top: 16px;
-        height: calc(100vh - 181px);
+        height: calc(100vh - 210px);
         overflow-y: auto;
 
         &::-webkit-scrollbar {
@@ -68,10 +80,20 @@
         &::-webkit-scrollbar-thumb:hover {
             background: #999;
         }
+
+        & .not-match {
+            color: #999;
+            text-align: center;
+            font-size: 15px;
+            margin-top: 10px;
+        }
     }
 
-    @media screen and (max-width: 374px) {}
+
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        left: -100%;
+    }
+
 
 }
-
-.modal-friends__box {}

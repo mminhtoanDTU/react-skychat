@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isModalFriends: false,
+    isShowInfoBar: false,
+    isShowMessage: false,
+    isLoading: false
 }
 
 
@@ -9,15 +12,27 @@ const ControlSlice = createSlice({
     name: 'control',
     initialState,
     reducers: {
-        openModalFriends: (state) => {
-            state.isModalFriends = true;
+        toggleModalFriends: (state, action) => {
+            state.isModalFriends = action.payload;
         },
-        closeModalFriends: (state) => {
-            state.isModalFriends = false;
+        toggleInfoBar: (state, action) => {
+            state.isShowInfoBar = action.payload;
+        },
+        toggleContentMessage: (state, action) => {
+            state.isShowMessage = action.payload;
+        },
+        toggleLoading: (state, action) => {
+            state.isLoading = action.payload;
         }
+
     }
 })
 
-export const { openModalFriends, closeModalFriends } = ControlSlice.actions;
+export const {
+    toggleModalFriends,
+    toggleInfoBar,
+    toggleContentMessage,
+    toggleLoading
+} = ControlSlice.actions;
 export default ControlSlice.reducer;
 

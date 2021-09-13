@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { IoSettingsSharp } from 'react-icons/io5';
+import { Avatar } from '../../../../../components';
 import PopSetting from '../PopSetting';
+import './userinfo.scss';
 
 UserInfo.propTypes = {
 
@@ -9,8 +9,8 @@ UserInfo.propTypes = {
 
 function UserInfo(props) {
     const [isOpenSetting, setIsOpenSetting] = useState(false);
-    const { children } = props;
-    const settingBtnRef = useRef(null);
+    const { userInfo } = props;
+    const userBtnRef = useRef(null);
 
     useEffect(() => {
         if (isOpenSetting) {
@@ -27,7 +27,7 @@ function UserInfo(props) {
     }
 
     const handleClickOutside = (e) => {
-        if (settingBtnRef.current.contains(e.target)) {
+        if (userBtnRef.current.contains(e.target)) {
             // inside click
             return;
         }
@@ -36,16 +36,18 @@ function UserInfo(props) {
     }
 
     return (
-        <div className="side-bar__info">
-            {children}
-            <div
-                ref={settingBtnRef}
-                className="icon"
-                onClick={() => handleToggleSetting()}
-            >
-                <IoSettingsSharp />
-                {isOpenSetting && <PopSetting setOpenSetting={setIsOpenSetting} />}
-            </div>
+        <div
+            className="user-info"
+            ref={userBtnRef}
+            onClick={(e) => handleToggleSetting(e)}
+        >
+            <Avatar
+                src={userInfo.photoURL}
+                alt={userInfo.displayName}
+                size={40}
+            />
+
+            {isOpenSetting && <PopSetting setOpenSetting={setIsOpenSetting} />}
         </div>
     );
 }

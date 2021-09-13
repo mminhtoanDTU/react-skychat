@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './button.scss';
 
 Button.propTypes = {
-    type: PropTypes.oneOf(['primary', 'outline', 'default']),
+    type: PropTypes.oneOf(['primary', 'outline', 'default', 'blur']),
     name: PropTypes.string,
     icon: PropTypes.node,
     className: PropTypes.string,
@@ -17,7 +17,7 @@ function Button(props) {
 
     return (
         <div
-            className={`btn ${`btn-${type}`}${size ? ` btn-${size} ` : ' '}${className}`}
+            className={`btn ${`btn-${type}`}${size ? ` btn-${size} ` : ' '}${className ? className : ''}`}
             onClick={onClick ? (uid) => onClick(uid) : () => { }}
         >
             {icon && <span className="icon">

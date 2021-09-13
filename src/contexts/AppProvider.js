@@ -5,7 +5,7 @@ import useFirestore from '../hooks/useFirestore';
 export const AppContext = createContext()
 
 function AppProvider({ children }) {
-    const { userInfo: { uid, friendIds } } = useSelector(state => state.user);
+    const { userInfo: { uid } } = useSelector(state => state.user);
 
     //Listen on users
     const usersCondition = useMemo(() => {

@@ -1,0 +1,32 @@
+.alert {
+    width: 100%;
+    padding: 8px 15px;
+    font-size: 14px;
+    line-height: 1.5;
+
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: #000000d9;
+
+
+
+    &-info {
+        border-color: #91D5FF;
+        background-color: #e6f7ff;
+    }
+
+    &-success {
+        border-color: #B7EB8F;
+        background-color: #f6ffed;
+    }
+
+    &-warning {
+        border-color: #ffe58f;
+        background-color: #fffbe6;
+    }
+
+    &-danger {
+        border-color: #ffccc7;
+        background-color: #fff2f0;
+    }
+}

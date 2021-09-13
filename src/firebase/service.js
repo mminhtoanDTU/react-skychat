@@ -1,12 +1,15 @@
 import firebase, { db } from "./configFirebase"
 
 export const addDocument = (collection, data) => {
-    const query = db.collection(collection);
-
-    query.add({
-        ...data,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    return new Promise((resolve, reject) => {
+        db.collection(collection).add({
+            ...data,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(docRef => {
+            resolve(docRef.id);
+        })
     })
+
 }
 
 export const updateDocument = (collection, doc, data) => {

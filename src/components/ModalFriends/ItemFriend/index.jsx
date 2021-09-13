@@ -11,7 +11,8 @@ ItemFriend.propTypes = {
 
 function ItemFriend(props) {
     const { user, onAddClick, onChatClick } = props;
-    const { userInfo } = useSelector(state => state.user);
+    const { userInfo, isLogin } = useSelector(state => state.user);
+
 
     return (
         <li className="item-friend">

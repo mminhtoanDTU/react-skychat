@@ -10,7 +10,8 @@ const RoomSlice = createSlice({
     reducers: {
         setRoomInfo: (state, action) => {
             state.selectedRoom = action.payload;
-        }
+        },
+
     },
 })
 

@@ -1,100 +1,131 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { IoSearch } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toggleContentMessage, toggleLoading, toggleModalFriends } from '../../../../app/ControlSlice';
+import { setRoomInfo } from '../../../../app/RoomSlice';
 import Logo from '../../../../assets/images/logo-icon.png';
-import SearchBox from '../../../../components/SearchBox';
+import { Button, Loading, SearchBox } from '../../../../components';
+import { AppContext } from '../../../../contexts/AppProvider';
+import FormatString from '../../../../Logic/FormatString';
 import ItemRoom from './ItemRoom';
 import './sidebar.scss';
 import UserInfo from './UserInfo';
-import { openModalFriends } from '../../../../app/ControlSlice';
-import Button from '../../../../components/Button';
-import { AppContext } from '../../../../contexts/AppProvider';
-import { setRoomInfo } from '../../../../app/RoomSlice';
-import Avatar from '../../../../components/Avatar';
+
 
 function Sidebar(props) {
     const [listFriendRooms, setListFriendRooms] = useState([]);
-    const { userInfo, isLoading, isLogin } = useSelector(state => state.user);
+    const [listCurrentRooms, setListCurrentRooms] = useState([]);
+    const [filter, setFilter] = useState('');
+    const { userInfo, isLogin } = useSelector(state => state.user);
+    const { isLoading } = useSelector(state => state.control)
     const { rooms, allUsers } = useContext(AppContext);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const customList = rooms.map(room => {
-            const findFriendId = room.members.find(memId => memId !== userInfo.uid);
-            const infoFriend = allUsers.find(user => user.uid === findFriendId);
+        function CustomListRoom() {
+            const customList = rooms.map(room => {
+                const findFriendId = room.members.find(memId => memId !== userInfo.uid);
+                const infoFriend = allUsers.find(user => user.uid === findFriendId);
 
-            return ({
-                displayName: infoFriend.displayName,
-                roomId: room.id,
-                uid: infoFriend.uid,
-                photoURL: infoFriend.photoURL,
+                return ({
+                    displayName: infoFriend.displayName,
+                    roomId: room.id,
+                    uid: infoFriend.uid,
+                    photoURL: infoFriend.photoURL,
+                    updatedAt: room.updatedAt
+                });
             })
-        })
-        setListFriendRooms(customList);
+            setListFriendRooms(customList);
+        }
+        CustomListRoom();
     }, [rooms, allUsers])
 
+    useEffect(() => {
+        dispatch(toggleLoading(true));
+        const currentList = listFriendRooms.filter(room => {
+            if (filter === '') {
+                return room
+            } else {
+                return FormatString(room.displayName).includes(filter);
+            }
+        });
+
+        const setWait = setTimeout(() => {
+            dispatch(toggleLoading(false));
+        }, 500)
+        setListCurrentRooms(currentList);
+        return () => clearTimeout(setWait);
+
+    }, [listFriendRooms, filter]);
+
     const handleOpenModalFriends = () => {
-        dispatch(openModalFriends());
+        dispatch(toggleModalFriends(true));
+        dispatch(toggleLoading(true));
+        setTimeout(() => {
+            dispatch(toggleLoading(false));
+        }, 1000)
     }
 
     const handleSelectedRoom = (room) => {
         dispatch(setRoomInfo(room));
+        dispatch(toggleContentMessage(true));
     }
 
-    if (!isLogin) {
-        return (
-            <div className="side-bar">
-                <Link to="/" className="side-bar__logo">
+    const handleGetValueSearch = (formValue) => {
+        setFilter(FormatString(formValue));
+    }
+
+    return (
+        <div className="side-bar">
+            <div className="side-bar__top">
+                <Link to="/" className="logo">
                     <img src={Logo} alt="Logo Sky Chat" />
                     <span>Sky Chat</span>
                 </Link>
-                <h4 >Welcome to Sky Chat</h4>
-                <Link to="/login">
-                    <Button name="Login" type="primary" />
-                </Link>
+                {isLogin && <UserInfo userInfo={userInfo} />}
             </div>
-        )
-    }
-    return (
-        <div className="side-bar">
-            <Link to="/" className="side-bar__logo">
-                <img src={Logo} alt="Logo Sky Chat" />
-                <span>Sky Chat</span>
-            </Link>
 
-            <UserInfo>
-                <Avatar
-                    src={userInfo.photoURL}
-                    alt={userInfo.displayName}
-                    size={50}
-                />
-                <h4 className="name">
-                    {`Hi, ${userInfo.displayName}`}
-                </h4>
-            </UserInfo>
-            <SearchBox placeholder="Search" />
+            <SearchBox
+                placeholder="Search"
+                className="side-bar__search"
+                onSubmit={handleGetValueSearch}
+            />
             <div className="side-bar__add">
                 <h5 className="text">
-                    Last chats
+                    Messages
                 </h5>
-                <div
-                    className="icon"
+                <Button
                     onClick={() => handleOpenModalFriends()}
-                >
-                    <AiOutlinePlus />
-                </div>
+                    name="New"
+                    icon={<AiOutlinePlus />}
+                    type="blur"
+                />
             </div>
             <div className="side-bar__list">
-                {listFriendRooms.map(room => (
-                    <ItemRoom
-                        key={room.id}
-                        room={room}
-                        onClick={handleSelectedRoom}
-                    />
-                ))}
+                {!isLogin ? (
+                    <Loading />
+                ) : listFriendRooms.length === 0 ? (
+                    <p className="sub-text">
+                        List is empty.
+                        <span onClick={() => handleOpenModalFriends()}> Add new</span>
+                    </p>
+                ) : isLoading ? (
+                    <Loading />
+                ) : (
+                    listCurrentRooms.length ? (
+                        listCurrentRooms.map(room => (
+                            <ItemRoom
+                                key={room.id}
+                                room={room}
+                                onClick={handleSelectedRoom}
+                            />
+                        ))
+                    ) : (
+                        <p className="not-match">Does not match any results!</p>
+                    )
+                )}
+
 
             </div>
         </div>

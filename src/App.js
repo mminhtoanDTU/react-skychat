@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  useHistory
 } from "react-router-dom";
 import ChatApp from "./features/ChatApp";
 import Login from "./features/Login";
@@ -14,7 +15,7 @@ import { getStoreUser } from './app/UserSlice'
 function App() {
   const dispatch = useDispatch();
 
-  //When login set user info to redux
+  //When access set user info to redux
   useEffect(() => {
     const unsubscibed = auth.onAuthStateChanged(async user => {
       if (user) {
@@ -24,7 +25,7 @@ function App() {
     });
 
     return () => unsubscibed();
-  }, [])
+  }, []);
 
   return (
     <Router>

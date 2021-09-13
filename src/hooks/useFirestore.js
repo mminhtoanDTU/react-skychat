@@ -2,14 +2,10 @@ import { useEffect, useState } from 'react';
 import { db } from '../firebase/configFirebase';
 
 function useFirestore(collection, condition, orderField) {
-    const [documents, setDocuments] = useState([])
+    const [documents, setDocuments] = useState([]);
 
     useEffect(() => {
         let collectionRef = db.collection(collection);
-
-        if (orderField) {
-            collectionRef = collectionRef.orderBy(orderField.field, orderField.isDesc ? 'desc' : 'asc');
-        }
 
         if (condition) {
             if (!condition.compareValue || !condition.compareValue.length) {
@@ -22,6 +18,11 @@ function useFirestore(collection, condition, orderField) {
                 condition.compareValue
             );
         }
+
+        if (orderField) {
+            collectionRef = collectionRef.orderBy(orderField.field, orderField?.isDesc ? 'desc' : 'asc');
+        }
+
         const unsubscribe = collectionRef.onSnapshot(snapshot => {
             const document = snapshot.docs.map(doc => ({
                 ...doc.data(),
