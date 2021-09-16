@@ -3,10 +3,6 @@ import { Avatar } from '../../../../../components';
 import PopSetting from '../PopSetting';
 import './userinfo.scss';
 
-UserInfo.propTypes = {
-
-};
-
 function UserInfo(props) {
     const [isOpenSetting, setIsOpenSetting] = useState(false);
     const { userInfo } = props;

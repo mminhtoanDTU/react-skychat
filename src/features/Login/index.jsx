@@ -1,48 +1,43 @@
-import React, { useEffect } from 'react';
-import { FaFacebookSquare } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Intro from '../../assets/images/intro-message.svg';
-import firebase, { auth } from '../../firebase/configFirebase';
-import { addDocument } from '../../firebase/service';
+import Intro from '../../assets/images/intro-welcome.svg';
+import SelectAvatar from './SelectAvatar';
+import FieldInput from './FieldInput';
+import { Button, Loading } from '../../components'
 import './login.scss';
+import { useDispatch } from 'react-redux';
+import { loginSetUser } from '../../app/UserSlice';
+import { setLocalStorage } from '../../services';
+import { useSelector } from 'react-redux';
 
 function Login(props) {
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    const dispatch = useDispatch();
+    const { userInfo, isLogin } = useSelector(state => state.user);
 
-    //when the newbie, add to database
     useEffect(() => {
-        const unsubscibed = auth.getRedirectResult().then(result => {
-            const { additionalUserInfo, user } = result;
-            if (additionalUserInfo?.isNewUser) {
-                addDocument("users", {
-                    displayName: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL,
-                    uid: user.uid,
-                    friendIds: [],
-                    providerId: additionalUserInfo.providerId
-                })
-            }
-        })
+        if (isLogin) {
+            history.push('/chat');
+        }
+    }, [isLogin])
 
-        return () => unsubscibed;
-    }, [])
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        const formData = new FormData(e.target);
+        const formProps = Object.fromEntries(formData);
 
-    //when logined redirect to chat
-    useEffect(() => {
-        const checkLogin = auth.onAuthStateChanged(user => {
-            if (user) {
-                history.push('/chat');
-            }
-        })
-
-        return () => checkLogin;
-    }, [])
-
-    const handleLoginGoogle = () => {
-        auth.signInWithRedirect(googleProvider);
+        setTimeout(() => {
+            dispatch(loginSetUser(formProps.skyname));
+            setLocalStorage('userInfo', {
+                displayName: formProps.skyname,
+                photoURL: userInfo.photoURL,
+                uid: 'sky00'
+            });
+            setLocalStorage('isLogin', true);
+            setIsLoading(false);
+        }, 2500)
     }
 
     return (
@@ -51,34 +46,33 @@ function Login(props) {
 
             </div>
             <div className="login-content">
-                <h3 className="login-content__title">Sign In</h3>
-                <p className="login-content__subtitle">
+                <h3 className="content-title">Login</h3>
+                <p className="content-subtitle">
                     Hi there! <span>Welcome to Sky Chat.</span>
                 </p>
-
-                <div className="login-content__action">
-                    <div
-                        className="login-btn google"
-                        onClick={() => handleLoginGoogle()}
-                    >
-                        <FcGoogle className="icon" />
-                        <span className="text">Sign in with Google</span>
-                    </div>
-                    <p>Or</p>
-                    <div
-                        className="login-btn facebook"
-                        onClick={() => handleLoginGoogle()}
-                    >
-                        <FaFacebookSquare className="icon facebook" />
-                        <span className="text">Sign in with Facebook</span>
-                    </div>
-                </div>
+                <form
+                    className="login-content__form"
+                    onSubmit={handleOnSubmit}
+                >
+                    <SelectAvatar />
+                    <FieldInput />
+                    <Button
+                        isSubmit
+                        name="Login"
+                        type="primary"
+                        size="large"
+                        className="login-btn"
+                    />
+                </form>
                 <span className="copyright login-copyright">
                     Copyright © 2021
                     <a
                         href="https://toandev.tk/"
                         target="_blank"> toandev.tk</a>
                 </span>
+                {isLoading && (<div className="wrap-loading">
+                    <Loading />
+                </div>)}
             </div>
 
         </div>

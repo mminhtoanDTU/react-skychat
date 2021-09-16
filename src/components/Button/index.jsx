@@ -12,11 +12,13 @@ Button.propTypes = {
 
 function Button(props) {
     const { name, icon, type,
-        className, size, onClick } = props;
+        className, size, onClick, useRef, isSubmit } = props;
 
 
     return (
-        <div
+        <button
+            type={isSubmit ? 'submit' : ''}
+            ref={useRef}
             className={`btn ${`btn-${type}`}${size ? ` btn-${size} ` : ' '}${className ? className : ''}`}
             onClick={onClick ? (uid) => onClick(uid) : () => { }}
         >
@@ -24,7 +26,7 @@ function Button(props) {
                 {icon}
             </span>}
             <span className="name">{name}</span>
-        </div>
+        </button>
     );
 }
 

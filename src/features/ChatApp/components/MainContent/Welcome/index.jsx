@@ -1,22 +1,23 @@
 import React, { useContext } from 'react';
-import { Alert } from '../../../../../components';
-import { AppContext } from '../../../../../contexts/AppProvider';
 import './welcome.scss';
 import IntroImage from '../../../../../assets/images/intro-welcome.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoading, toggleModalFriends } from '../../../../../app/ControlSlice';
 
 function Welcome(props) {
     const dispatch = useDispatch();
-    const { rooms } = useContext(AppContext);
+    const { isModalFriends } = useSelector(state => state.control);
+    const rooms = []
 
     const handleOpenModalFriends = () => {
-        dispatch(toggleModalFriends(true));
-        dispatch(toggleLoading(true));
+        if (!isModalFriends) {
+            dispatch(toggleModalFriends(true));
+            dispatch(toggleLoading(true));
 
-        setTimeout(() => {
-            dispatch(toggleLoading(false));
-        }, 1000);
+            setTimeout(() => {
+                dispatch(toggleLoading(false));
+            }, 1000);
+        }
     }
 
     return (

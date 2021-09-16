@@ -1,10 +1,10 @@
 .modal-friends {
     position: fixed;
-    top: 88px;
+    top: 0px;
     left: -330px;
     bottom: 0;
     width: 330px;
-    padding: 0 10px;
+    padding: 10px;
 
     background-color: #fff;
     transition: all .3s ease-in-out;
@@ -17,23 +17,7 @@
     &__top {
         display: flex;
         align-items: center;
-        padding: 16px 0;
-
-        & .option-item {
-            font-size: 16px;
-            margin-right: 10px;
-            color: #aaa;
-            cursor: pointer;
-            line-height: 1.5;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-
-            &.active {
-                color: var(--text-color);
-                font-weight: 600;
-                border-color: var(--primary-color);
-            }
-        }
+        margin-bottom: 14px;
 
         & .icon {
             font-size: 25px;
@@ -56,6 +40,30 @@
                 cursor: pointer;
             }
         }
+    }
+
+    &__category {
+        display: flex;
+        align-items: center;
+        padding: 16px 0;
+
+        & .option-item {
+            font-size: 16px;
+            margin-right: 10px;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1.5;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+
+            &.active {
+                color: var(--text-color);
+                font-weight: 600;
+                border-color: var(--primary-color);
+            }
+        }
+
+
     }
 
     &__list {
@@ -94,6 +102,4 @@
         width: 100%;
         left: -100%;
     }
-
-
 }

@@ -1,43 +1,38 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { IoHappy, IoPaperPlane } from 'react-icons/io5';
-import { useSelector } from 'react-redux';
-import { addDocument } from '../../../../../firebase/service';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { inputChange } from '../../../../../app/RoomSlice';
+import { setSessionStorage } from '../../../../../services';
 import './inputmessage.scss';
 
+
 function InputMessage(props) {
+    const dispatch = useDispatch();
     const [message, setMessage] = useState('');
     const { userInfo } = useSelector(state => state.user);
     const { selectedRoom } = useSelector(state => state.rooms);
 
-    const inputRef = useRef(null);
-
     const handleOnSubmit = (e) => {
         e.preventDefault();
         if (message !== '') {
-            addDocument("messages", {
-                sender: userInfo.uid,
-                roomId: selectedRoom.roomId,
+            setSessionStorage('messages', {
+                roomId: selectedRoom.uid,
                 message: message,
-            })
+                time: new Date(),
+                sender: userInfo.uid
+            });
+            dispatch(inputChange(Math.random().toFixed(2)));
         }
         setMessage('');
     }
 
-    // const handleOpenEmoji = () => {
-    //     console.log(inputRef.current);
-    //     picker.on('emoji', selection => {
-    //         // handle the selected emoji here
-    //         const newMessage = message.concat(selection.emoji)
-    //         setMessage(newMessage)
-    //     });
-    //     picker.togglePicker(inputRef.current)
-    // }
-
     return (
-        <form className="box-input" onSubmit={(e) => handleOnSubmit(e)}>
+        <form
+            className="box-input"
+            onSubmit={(e) => handleOnSubmit(e)}>
             <input
-                ref={inputRef}
+                autoComplete="off"
+                name="message"
                 type="text"
                 className="input-message"
                 placeholder="Type a message"
@@ -52,11 +47,9 @@ function InputMessage(props) {
             </div>
             <div
                 className="icon-smile"
-            // onClick={() => handleOpenEmoji()}
+                onClick={() => console.log("Open Emoji")}
             >
-                <IoHappy
-                    size="22px"
-                />
+                <IoHappy size="22px" />
             </div>
         </form>
     );

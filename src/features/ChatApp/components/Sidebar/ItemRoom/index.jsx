@@ -6,7 +6,8 @@ import moment from 'moment';
 import { useSelector } from 'react-redux';
 
 ItemRoom.propTypes = {
-
+    room: PropTypes.object,
+    onClick: PropTypes.func,
 };
 
 function ItemRoom(props) {
@@ -14,14 +15,14 @@ function ItemRoom(props) {
     const { selectedRoom } = useSelector(state => state.rooms);
 
     const convertTime = (time) => {
-        if (time?.seconds) {
-            return moment(time.seconds * 1000).format('LT');
+        if (time) {
+            return moment(time).format('LT');
         }
     }
 
     return (
         <div
-            className={`item-room ${selectedRoom.roomId === room.roomId ? 'active' : ''}`}
+            className={`item-room ${selectedRoom.uid === room.uid ? 'active' : ''}`}
             onClick={() => onClick(room)}
         >
             <Avatar

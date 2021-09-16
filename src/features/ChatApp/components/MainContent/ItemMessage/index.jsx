@@ -8,11 +8,16 @@ ItemMessage.propTypes = {
 };
 
 function ItemMessage(props) {
-    const { message, time, isSend } = props;
+    const { message, time, isSend, loading } = props;
     return (
         <div className={`item-message ${isSend && 'sender'}`}>
-            <span className="msg">{message}</span>
-            <div className="times">{time}</div>
+            {message && <span className="msg">{message}</span>}
+            {time && <div className="times">{time}</div>}
+            {loading && (<span className="msg">
+                <span className="dots"></span>
+                <span className="dots"></span>
+                <span className="dots"></span>
+            </span>)}
         </div>
     );
 }

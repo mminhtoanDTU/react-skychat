@@ -1,6 +1,6 @@
 .info-bar {
     width: 300px;
-    padding: 10px 10px 10px 0;
+    padding: 10px;
     flex-direction: column;
     display: none;
     background-color: #fff;
@@ -30,7 +30,7 @@
                 background: #eee;
             }
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: 1025px) {
                 display: none;
             }
 
@@ -84,23 +84,58 @@
     }
 }
 
-@media screen and (max-width: 767px) {
+
+
+@media screen and (max-width: 1024px) {
     .info-bar {
         position: fixed;
         top: 0;
         bottom: 0;
-        right: -100%;
-        width: 100%;
-        padding: 0;
-        padding-bottom: 15px;
+        right: -300px;
         margin: 0;
         border-radius: 0;
-        transition: all .25s ease-in-out;
+        transition: all .2s ease-in-out;
         z-index: 9999;
         display: flex;
 
         &.active {
             right: 0;
         }
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .info-bar {
+        right: -100%;
+        width: 100%;
+        padding: 0;
+        padding-bottom: 15px;
+        margin: 0;
+        border-radius: 0;
+        display: flex;
+
+        &.active {
+            right: 0;
+        }
+    }
+}
+
+.hidden-click {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+@media (min-width:768px) and (max-width:1024px) {
+    .hidden-click.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 300px;
+        background: rgba(0, 0, 0, 0.068);
+        opacity: 1;
+        visibility: visible;
     }
 }

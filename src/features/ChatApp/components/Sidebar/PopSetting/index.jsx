@@ -1,26 +1,27 @@
-import React, { useEffect, useRef } from 'react';
-import { auth } from '../../../../../firebase/configFirebase';
-import './popsetting.scss';
-import { useDispatch } from 'react-redux'
-import { logoutRemoveUser } from '../../../../../app/UserSlice'
-import { setRoomInfo } from '../../../../../app/RoomSlice';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { FiLogOut } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetControl } from '../../../../../app/ControlSlice';
+import { resetRooms, setRoomInfo } from '../../../../../app/RoomSlice';
+import { logoutUser, resetUser } from '../../../../../app/UserSlice';
 import { Avatar } from '../../../../../components';
-import { FiLogOut } from 'react-icons/fi'
+import './popsetting.scss';
 
 function PopSetting() {
-    const { userInfo } = useSelector(state => state.user)
+    const { userInfo } = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const popSettingRef = useRef(null);
 
     const handleLogout = () => {
-        auth.signOut();
-        dispatch(logoutRemoveUser());
-        dispatch(setRoomInfo({}))
+        localStorage.clear();
+        sessionStorage.clear();
+        dispatch(resetUser());
+        dispatch(resetRooms());
+        dispatch(resetControl());
+        dispatch(logoutUser(false));
     }
 
     return (
-        <div ref={popSettingRef} className="pop-setting">
+        <div className="pop-setting">
             <div
                 className="pop-setting__item"
                 onClick={() => console.log("Edit profile")}

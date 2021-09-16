@@ -65,3 +65,37 @@
         }
     }
 }
+
+.dots {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    background: #000;
+    margin-right: 5px;
+    transition: all .15s linear;
+
+    animation: loader .8s infinite alternate;
+
+    &:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+}
+
+@keyframes loader {
+    0% {
+        opacity: 0.9;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+}

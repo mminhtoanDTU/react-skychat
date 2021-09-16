@@ -12,6 +12,7 @@ const ControlSlice = createSlice({
     name: 'control',
     initialState,
     reducers: {
+        resetControl: () => initialState,
         toggleModalFriends: (state, action) => {
             state.isModalFriends = action.payload;
         },
@@ -24,7 +25,6 @@ const ControlSlice = createSlice({
         toggleLoading: (state, action) => {
             state.isLoading = action.payload;
         }
-
     }
 })
 
@@ -32,7 +32,8 @@ export const {
     toggleModalFriends,
     toggleInfoBar,
     toggleContentMessage,
-    toggleLoading
+    toggleLoading,
+    resetControl
 } = ControlSlice.actions;
 export default ControlSlice.reducer;
 

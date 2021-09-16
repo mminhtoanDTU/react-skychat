@@ -8,8 +8,11 @@
     transition: background-color .1s ease-in;
     user-select: none;
 
-    &.active {
-        background-color: #F5F5F5;
+    @media screen and (min-width: 768px) {
+        &.active {
+            background-color: #F5F5F5;
+        }
+
     }
 
     &:hover {

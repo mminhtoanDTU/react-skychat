@@ -1,5 +1,7 @@
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 4px 10px;
     height: 32px;
 
@@ -40,6 +42,7 @@
         color: #272727;
         border-color: #D9D9D9;
         transition: all .25s linear;
+        min-width: 85px;
 
         &:hover {
             color: var(--primary-color);
@@ -97,14 +100,13 @@
 
     //others
     & .name {
-        vertical-align: middle;
         display: inline-block;
     }
 
     & .icon {
         display: inline-block;
-        vertical-align: sub;
-        margin-right: 7px;
+        line-height: 0;
+        margin-right: 8px;
         color: inherit;
     }
 }

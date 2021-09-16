@@ -1,9 +1,10 @@
 .main-content {
     flex: 1;
     background-color: var(--bg-gray);
-    margin: 10px 10px 10px 0;
+    margin: 10px 0;
     border-radius: 10px;
     z-index: 999;
+
 
     @media screen and (max-width: 767px) {
         position: fixed;
@@ -55,7 +56,7 @@
 
     }
 
-    & .user-info {
+    & .main-info {
         display: flex;
         align-items: center;
 
@@ -145,9 +146,10 @@
             justify-content: flex-end;
         }
     }
+}
 
-    @media screen and (max-width: 767px) {
-        height: calc(100vh - 65px);
+@media screen and (max-width: 767px) {
+    .main-content__body {
+        height: calc(100% - 65px);
     }
-
 }

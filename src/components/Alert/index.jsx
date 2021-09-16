@@ -4,7 +4,7 @@ import './alert.scss';
 
 Alert.propTypes = {
     message: PropTypes.string,
-    type: PropTypes.oneOfType([
+    type: PropTypes.oneOf([
         'success', 'danger', 'warning', 'info'
     ]),
     style: PropTypes.string,

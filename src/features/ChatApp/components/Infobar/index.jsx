@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleInfoBar } from '../../../../app/ControlSlice';
-import { Avatar, Alert } from '../../../../components';
+import { Alert, Avatar } from '../../../../components';
 import './infobar.scss';
 
 function SubContent(props) {
@@ -59,6 +57,11 @@ function SubContent(props) {
                     href="https://toandev.tk/"
                     target="_blank"> toandev.tk</a>
             </span>
+            <div
+                className={`hidden-click ${isShowInfoBar ? 'active' : ''}`}
+                onClick={() => handleCloseInfoBarOnMobile()}
+            >
+            </div>
         </div>
     );
 }

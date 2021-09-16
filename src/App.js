@@ -5,27 +5,11 @@ import {
   Switch,
   Route,
   Redirect,
-  useHistory
 } from "react-router-dom";
 import ChatApp from "./features/ChatApp";
 import Login from "./features/Login";
-import { auth } from "./firebase/configFirebase";
-import { getStoreUser } from './app/UserSlice'
 
 function App() {
-  const dispatch = useDispatch();
-
-  //When access set user info to redux
-  useEffect(() => {
-    const unsubscibed = auth.onAuthStateChanged(async user => {
-      if (user) {
-        const actionUserInfo = getStoreUser(user.uid);
-        await dispatch(actionUserInfo);
-      }
-    });
-
-    return () => unsubscibed();
-  }, []);
 
   return (
     <Router>

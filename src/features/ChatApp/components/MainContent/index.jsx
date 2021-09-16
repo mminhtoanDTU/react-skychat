@@ -1,42 +1,51 @@
-import moment from 'moment';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IoArrowBack, IoCall, IoEllipsisHorizontal } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleContentMessage, toggleInfoBar } from '../../../../app/ControlSlice';
-import Alert from '../../../../components/Alert';
+import { replyChange } from '../../../../app/RoomSlice';
 import Avatar from '../../../../components/Avatar';
-import { AppContext } from '../../../../contexts/AppProvider';
-import useFirestore from '../../../../hooks/useFirestore';
+import { MessagesScript } from '../../../../Data/Messages';
+import { setSessionStorage } from '../../../../services';
+import ContentBody from './ContentBody';
 import InputMessage from './InputMessage';
-import ItemMessage from './ItemMessage';
 import './maincontent.scss';
 import Welcome from './Welcome';
 
+function randomIndex(prev) {
+    const random = Math.round(Math.random() * MessagesScript.length - 1);
+    if (random === prev) {
+        randomIndex(prev);
+    }
+    return random;
+}
+
 function MainContent(props) {
     const dispatch = useDispatch();
-    const { selectedRoom } = useSelector(state => state.rooms);
-    const { userInfo, isLoading } = useSelector(state => state.user);
+    const { selectedRoom, hasSender, hasReply } = useSelector(state => state.rooms);
+    const { userInfo } = useSelector(state => state.user);
     const { isShowInfoBar, isShowMessage } = useSelector(state => state.control);
-    const { rooms } = useContext(AppContext);
+    const ScriptDownRef = useRef();
 
+    //Message autoscript
+    useEffect(() => {
+        if (Object.keys(selectedRoom).length !== 0) {
+            if (ScriptDownRef.current) {
+                clearTimeout(ScriptDownRef.current);
+            }
 
-    //Get message form database
-    const messageCondition = useMemo(() => {
-        return {
-            fieldName: 'roomId',
-            operator: '==',
-            compareValue: selectedRoom.roomId,
-        };
-    }, [selectedRoom.roomId]);
-    const messages = useFirestore("messages", messageCondition, { field: 'createdAt', isDesc: false });
-
-
-    function convertDate(time) {
-        if (time?.seconds) {
-            return moment(new Date(time.seconds * 1000)).calendar();
+            ScriptDownRef.current = setTimeout(() => {
+                setSessionStorage('messages', {
+                    roomId: selectedRoom.uid,
+                    message: MessagesScript[hasReply],
+                    time: new Date(),
+                    sender: selectedRoom.uid
+                });
+                dispatch(replyChange(randomIndex(hasReply)));
+            }, 3000)
         }
-    }
+
+        return () => clearTimeout(ScriptDownRef.current);
+    }, [hasSender])
 
     const handleOnInfobar = () => {
         dispatch(toggleInfoBar(!isShowInfoBar));
@@ -46,14 +55,11 @@ function MainContent(props) {
         dispatch(toggleContentMessage(false));
     }
 
-
-
     if (Object.keys(selectedRoom).length === 0) {
         return (
             <Welcome />
         )
     }
-
     return (
         <div className={`main-content ${isShowMessage ? 'active' : ''}`}>
             <div className="main-content__head">
@@ -61,7 +67,7 @@ function MainContent(props) {
                     className="icon-back"
                     onClick={() => handleCloseMessageOnMobile()}
                 />
-                <div className="user-info">
+                <div className="main-info">
                     <Avatar
                         src={selectedRoom.photoURL}
                         alt={selectedRoom.displayName}
@@ -84,19 +90,7 @@ function MainContent(props) {
                 </div>
             </div>
             <div className="main-content__body">
-                <div className="message-wrap">
-                    <div className="message-wrap__list">
-                        {messages.map((mess, index) => (
-                            <ItemMessage
-                                key={mess.createdAt}
-                                message={mess.message}
-                                time={convertDate(mess.createdAt)}
-                                isSend={mess.sender === userInfo.uid}
-                            />
-                        ))}
-
-                    </div>
-                </div>
+                <ContentBody />
                 <InputMessage />
             </div>
         </div>

@@ -6,44 +6,24 @@ import { toggleContentMessage, toggleLoading, toggleModalFriends } from '../../.
 import { setRoomInfo } from '../../../../app/RoomSlice';
 import Logo from '../../../../assets/images/logo-icon.png';
 import { Button, Loading, SearchBox } from '../../../../components';
-import { AppContext } from '../../../../contexts/AppProvider';
 import FormatString from '../../../../Logic/FormatString';
+import { getLocalStorage } from '../../../../services';
 import ItemRoom from './ItemRoom';
 import './sidebar.scss';
 import UserInfo from './UserInfo';
 
 
 function Sidebar(props) {
-    const [listFriendRooms, setListFriendRooms] = useState([]);
     const [listCurrentRooms, setListCurrentRooms] = useState([]);
     const [filter, setFilter] = useState('');
     const { userInfo, isLogin } = useSelector(state => state.user);
-    const { isLoading } = useSelector(state => state.control)
-    const { rooms, allUsers } = useContext(AppContext);
+    const { rooms } = useSelector(state => state.rooms);
+    const { isLoading } = useSelector(state => state.control);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        function CustomListRoom() {
-            const customList = rooms.map(room => {
-                const findFriendId = room.members.find(memId => memId !== userInfo.uid);
-                const infoFriend = allUsers.find(user => user.uid === findFriendId);
-
-                return ({
-                    displayName: infoFriend.displayName,
-                    roomId: room.id,
-                    uid: infoFriend.uid,
-                    photoURL: infoFriend.photoURL,
-                    updatedAt: room.updatedAt
-                });
-            })
-            setListFriendRooms(customList);
-        }
-        CustomListRoom();
-    }, [rooms, allUsers])
-
-    useEffect(() => {
         dispatch(toggleLoading(true));
-        const currentList = listFriendRooms.filter(room => {
+        const currentList = rooms.filter(room => {
             if (filter === '') {
                 return room
             } else {
@@ -54,10 +34,10 @@ function Sidebar(props) {
         const setWait = setTimeout(() => {
             dispatch(toggleLoading(false));
         }, 500)
-        setListCurrentRooms(currentList);
+        setListCurrentRooms(currentList.reverse());
         return () => clearTimeout(setWait);
 
-    }, [listFriendRooms, filter]);
+    }, [filter, rooms]);
 
     const handleOpenModalFriends = () => {
         dispatch(toggleModalFriends(true));
@@ -81,7 +61,7 @@ function Sidebar(props) {
             <div className="side-bar__top">
                 <Link to="/" className="logo">
                     <img src={Logo} alt="Logo Sky Chat" />
-                    <span>Sky Chat</span>
+                    <span className="title">Sky Chat</span>
                 </Link>
                 {isLogin && <UserInfo userInfo={userInfo} />}
             </div>
@@ -105,7 +85,7 @@ function Sidebar(props) {
             <div className="side-bar__list">
                 {!isLogin ? (
                     <Loading />
-                ) : listFriendRooms.length === 0 ? (
+                ) : rooms.length === 0 ? (
                     <p className="sub-text">
                         List is empty.
                         <span onClick={() => handleOpenModalFriends()}> Add new</span>
@@ -116,7 +96,7 @@ function Sidebar(props) {
                     listCurrentRooms.length ? (
                         listCurrentRooms.map(room => (
                             <ItemRoom
-                                key={room.id}
+                                key={room.uid}
                                 room={room}
                                 onClick={handleSelectedRoom}
                             />
