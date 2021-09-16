@@ -4,7 +4,7 @@ import { getLocalStorage } from '../services';
 const initUser = getLocalStorage('userInfo') || {
     uid: 'sky00',
     displayName: '',
-    photoURL: '/static/media/bear.8f109084.png',
+    photoURL: '/react-skychat/static/media/bear.8f109084.png',
 };
 
 const initialState = {

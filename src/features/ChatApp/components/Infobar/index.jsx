@@ -6,7 +6,6 @@ import { Alert, Avatar } from '../../../../components';
 import './infobar.scss';
 
 function SubContent(props) {
-    const [isAlert, setIsAlert] = useState(false);
     const dispatch = useDispatch();
     const { selectedRoom } = useSelector(state => state.rooms);
     const { isShowInfoBar } = useSelector(state => state.control);
@@ -14,15 +13,6 @@ function SubContent(props) {
 
     const handleCloseInfoBarOnMobile = () => {
         dispatch(toggleInfoBar(false));
-    }
-
-    const handleOpenLink = () => {
-        setIsAlert(true);
-        const setTime = setTimeout(() => {
-            setIsAlert(false);
-        }, 2000)
-
-        return () => clearTimeout(setTime);
     }
 
     return (
@@ -45,11 +35,9 @@ function SubContent(props) {
                 <span className="name">{selectedRoom.displayName}</span>
                 <a
                     className="link"
-                    onClick={() => handleOpenLink()}
                 >
                     View profile
                 </a>
-                {isAlert && <Alert message="Please try again later." type="info" />}
             </div>
             <span className="copyright">
                 Copyright © 2021

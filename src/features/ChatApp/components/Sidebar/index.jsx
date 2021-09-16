@@ -15,14 +15,15 @@ import UserInfo from './UserInfo';
 
 function Sidebar(props) {
     const [listCurrentRooms, setListCurrentRooms] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
     const [filter, setFilter] = useState('');
     const { userInfo, isLogin } = useSelector(state => state.user);
     const { rooms } = useSelector(state => state.rooms);
-    const { isLoading } = useSelector(state => state.control);
+    const { } = useSelector(state => state.control);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(toggleLoading(true));
+        setIsLoading(true);
         const currentList = rooms.filter(room => {
             if (filter === '') {
                 return room
@@ -32,11 +33,10 @@ function Sidebar(props) {
         });
 
         const setWait = setTimeout(() => {
-            dispatch(toggleLoading(false));
+            setIsLoading(false);
         }, 500)
         setListCurrentRooms(currentList.reverse());
         return () => clearTimeout(setWait);
-
     }, [filter, rooms]);
 
     const handleOpenModalFriends = () => {
