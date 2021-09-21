@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import './welcome.scss';
-import IntroImage from '../../../../../assets/images/intro-welcome.svg';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoading, toggleModalFriends } from '../../../../../app/ControlSlice';
+import IntroImage from '../../../../../assets/images/intro-welcome.svg';
+import './welcome.scss';
 
 function Welcome(props) {
     const dispatch = useDispatch();

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Intro from '../../assets/images/intro-welcome.svg';
-import SelectAvatar from './SelectAvatar';
-import FieldInput from './FieldInput';
-import { Button, Loading } from '../../components'
-import './login.scss';
-import { useDispatch } from 'react-redux';
 import { loginSetUser } from '../../app/UserSlice';
+import Intro from '../../assets/images/intro-welcome.svg';
+import { Button, Loading } from '../../components';
 import { setLocalStorage } from '../../services';
-import { useSelector } from 'react-redux';
+import FieldInput from './FieldInput';
+import './login.scss';
+import SelectAvatar from './SelectAvatar';
 
 function Login(props) {
     const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +19,7 @@ function Login(props) {
         if (isLogin) {
             history.push('/chat');
         }
-    }, [isLogin])
+    }, [isLogin, history])
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
@@ -42,9 +41,7 @@ function Login(props) {
 
     return (
         <div className="login">
-            <div className="login-intro" style={{ backgroundImage: `url(${Intro})` }}>
-
-            </div>
+            <div className="login-intro" style={{ backgroundImage: `url(${Intro})` }}></div>
             <div className="login-content">
                 <h3 className="content-title">Login</h3>
                 <p className="content-subtitle">
@@ -68,13 +65,16 @@ function Login(props) {
                     Copyright © 2021
                     <a
                         href="https://toandev.tk/"
-                        target="_blank"> toandev.tk</a>
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        toandev.tk
+                    </a>
                 </span>
                 {isLoading && (<div className="wrap-loading">
                     <Loading />
                 </div>)}
             </div>
-
         </div>
     );
 }

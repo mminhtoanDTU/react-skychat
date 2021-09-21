@@ -18,7 +18,7 @@ function ContentBody(props) {
     }, [selectedRoom, hasSender, hasReply]);
 
     useEffect(() => {
-        if (hasSender != '') {
+        if (hasSender !== '') {
             setLoader(true);
 
             if (loaderRef.current) {

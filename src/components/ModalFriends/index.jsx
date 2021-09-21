@@ -6,12 +6,12 @@ import { Loading } from '..';
 import { toggleContentMessage, toggleLoading, toggleModalFriends } from '../../app/ControlSlice';
 import { setRoomInfo, setRooms } from '../../app/RoomSlice';
 import { addNewFriends } from '../../app/UserSlice';
+import Logo from '../../assets/images/logo-icon.png';
 import AllUsers from '../../Data/Users';
 import FormatString from '../../Logic/FormatString';
 import { getLocalStorage, setArrayLocalStorage } from '../../services';
 import SearchBox from '../SearchBox';
 import ItemFriend from './ItemFriend';
-import Logo from '../../assets/images/logo-icon.png'
 import './modalfriends.scss';
 
 
@@ -51,7 +51,7 @@ function ModalFriends(props) {
         setListFriends(customList);
 
         return () => clearTimeout(setWait);
-    }, [filter]);
+    }, [filter, dispatch]);
 
     //Close modal
     const handleOnModalFriends = () => {
@@ -115,7 +115,7 @@ function ModalFriends(props) {
     return (
         <div className={`modal-friends ${isModalFriends ? 'active' : ''}`}>
             <div className="modal-friends__top">
-                <Link to="/" className="logo modal-logo">
+                <Link to="/chat" className="logo modal-logo">
                     <img src={Logo} alt="Logo Sky Chat" />
                     <span className="title">Sky Chat</span>
                 </Link>

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { MainContent, Sidebar, Infobar } from './components';
-import './chatapp.scss';
-import ModalFriends from '../../components/ModalFriends';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import ModalFriends from '../../components/ModalFriends';
+import './chatapp.scss';
+import { Infobar, MainContent, Sidebar } from './components';
 
 function ChatApp(props) {
     const history = useHistory();
@@ -13,7 +13,7 @@ function ChatApp(props) {
         if (!isLogin) {
             history.push('/login');
         }
-    }, [isLogin])
+    }, [isLogin, history])
 
     return (
         <>

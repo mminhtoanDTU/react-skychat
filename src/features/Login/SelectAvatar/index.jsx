@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Avatar, Button } from '../../../components';
-import PopAvatar from './PopAvatar';
-import { MdModeEdit } from 'react-icons/md'
+import { MdModeEdit } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+import { Avatar } from '../../../components';
+import PopAvatar from './PopAvatar';
 
 FieldAvatar.propTypes = {
 

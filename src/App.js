@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+
+import React from "react";
 import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  Redirect,
+  HashRouter as Router, Redirect, Route, Switch
 } from "react-router-dom";
 import ChatApp from "./features/ChatApp";
 import Login from "./features/Login";
+import { NotFound } from './components'
 
 function App() {
 
@@ -18,6 +16,7 @@ function App() {
         <Redirect exact from="/" to="chat" />
         <Route path="/login" component={Login} />
         <Route path="/chat" component={ChatApp} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );

@@ -3,6 +3,7 @@ import Rosie from '../assets/images/rosie.png';
 import Jennie from '../assets/images/jennie.png';
 import Jisoo from '../assets/images/jisoo.png';
 import SonTung from '../assets/images/sontung.jpg';
+import IU from '../assets/images/iu.jpg';
 
 const Users = [
     {
@@ -29,6 +30,11 @@ const Users = [
         uid: 'sky05',
         displayName: 'Son Tung MTP',
         photoURL: SonTung
+    },
+    {
+        uid: 'sky06',
+        displayName: 'IU',
+        photoURL: IU
     },
 ]
 

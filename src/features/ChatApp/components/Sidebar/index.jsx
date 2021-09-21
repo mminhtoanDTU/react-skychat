@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { setRoomInfo } from '../../../../app/RoomSlice';
 import Logo from '../../../../assets/images/logo-icon.png';
 import { Button, Loading, SearchBox } from '../../../../components';
 import FormatString from '../../../../Logic/FormatString';
-import { getLocalStorage } from '../../../../services';
 import ItemRoom from './ItemRoom';
 import './sidebar.scss';
 import UserInfo from './UserInfo';
@@ -19,7 +18,6 @@ function Sidebar(props) {
     const [filter, setFilter] = useState('');
     const { userInfo, isLogin } = useSelector(state => state.user);
     const { rooms } = useSelector(state => state.rooms);
-    const { } = useSelector(state => state.control);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -59,7 +57,7 @@ function Sidebar(props) {
     return (
         <div className="side-bar">
             <div className="side-bar__top">
-                <Link to="/" className="logo">
+                <Link to="/chat" className="logo">
                     <img src={Logo} alt="Logo Sky Chat" />
                     <span className="title">Sky Chat</span>
                 </Link>

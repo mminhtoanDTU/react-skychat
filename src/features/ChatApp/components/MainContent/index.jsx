@@ -22,7 +22,6 @@ function randomIndex(prev) {
 function MainContent(props) {
     const dispatch = useDispatch();
     const { selectedRoom, hasSender, hasReply } = useSelector(state => state.rooms);
-    const { userInfo } = useSelector(state => state.user);
     const { isShowInfoBar, isShowMessage } = useSelector(state => state.control);
     const ScriptDownRef = useRef();
 
@@ -45,7 +44,7 @@ function MainContent(props) {
         }
 
         return () => clearTimeout(ScriptDownRef.current);
-    }, [hasSender])
+    }, [hasSender, dispatch])
 
     const handleOnInfobar = () => {
         dispatch(toggleInfoBar(!isShowInfoBar));

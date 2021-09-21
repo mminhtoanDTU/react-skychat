@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IoArrowBack } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleInfoBar } from '../../../../app/ControlSlice';
-import { Alert, Avatar } from '../../../../components';
+import { Avatar } from '../../../../components';
 import './infobar.scss';
 
 function SubContent(props) {
@@ -33,11 +33,11 @@ function SubContent(props) {
                     size={150}
                 />
                 <span className="name">{selectedRoom.displayName}</span>
-                <a
+                <span
                     className="link"
                 >
                     View profile
-                </a>
+                </span>
             </div>
             <span className="copyright">
                 Copyright © 2021

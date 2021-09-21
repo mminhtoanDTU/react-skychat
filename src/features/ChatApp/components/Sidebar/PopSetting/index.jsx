@@ -2,9 +2,10 @@ import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetControl } from '../../../../../app/ControlSlice';
-import { resetRooms, setRoomInfo } from '../../../../../app/RoomSlice';
+import { resetRooms } from '../../../../../app/RoomSlice';
 import { logoutUser, resetUser } from '../../../../../app/UserSlice';
 import { Avatar } from '../../../../../components';
+import { clearLocalStore, setLocalStorage } from '../../../../../services';
 import './popsetting.scss';
 
 function PopSetting() {
@@ -12,7 +13,10 @@ function PopSetting() {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        localStorage.clear();
+        clearLocalStore('userInfo');
+        clearLocalStore('friendIds');
+        clearLocalStore('rooms');
+        setLocalStorage('isLogin', false);
         sessionStorage.clear();
         dispatch(resetUser());
         dispatch(resetRooms());
