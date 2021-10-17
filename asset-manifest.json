@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/react-skychat/static/css/main.5956a979.chunk.css",
-    "main.js": "/react-skychat/static/js/main.498e5ea8.chunk.js",
-    "main.js.map": "/react-skychat/static/js/main.498e5ea8.chunk.js.map",
+    "main.css": "/react-skychat/static/css/main.3f8c598b.chunk.css",
+    "main.js": "/react-skychat/static/js/main.fa6d36d3.chunk.js",
+    "main.js.map": "/react-skychat/static/js/main.fa6d36d3.chunk.js.map",
     "runtime-main.js": "/react-skychat/static/js/runtime-main.db45380e.js",
     "runtime-main.js.map": "/react-skychat/static/js/runtime-main.db45380e.js.map",
-    "static/js/2.3768282c.chunk.js": "/react-skychat/static/js/2.3768282c.chunk.js",
-    "static/js/2.3768282c.chunk.js.map": "/react-skychat/static/js/2.3768282c.chunk.js.map",
+    "static/js/2.09b0dce6.chunk.js": "/react-skychat/static/js/2.09b0dce6.chunk.js",
+    "static/js/2.09b0dce6.chunk.js.map": "/react-skychat/static/js/2.09b0dce6.chunk.js.map",
     "index.html": "/react-skychat/index.html",
-    "static/css/main.5956a979.chunk.css.map": "/react-skychat/static/css/main.5956a979.chunk.css.map",
-    "static/js/2.3768282c.chunk.js.LICENSE.txt": "/react-skychat/static/js/2.3768282c.chunk.js.LICENSE.txt",
+    "static/css/main.3f8c598b.chunk.css.map": "/react-skychat/static/css/main.3f8c598b.chunk.css.map",
+    "static/js/2.09b0dce6.chunk.js.LICENSE.txt": "/react-skychat/static/js/2.09b0dce6.chunk.js.LICENSE.txt",
     "static/media/bear.8f109084.png": "/react-skychat/static/media/bear.8f109084.png",
     "static/media/bee.564afa3a.png": "/react-skychat/static/media/bee.564afa3a.png",
     "static/media/bird.ce78fb36.png": "/react-skychat/static/media/bird.ce78fb36.png",
     "static/media/deer.c9975f46.png": "/react-skychat/static/media/deer.c9975f46.png",
     "static/media/fox.c5be04fa.png": "/react-skychat/static/media/fox.c5be04fa.png",
     "static/media/intro-welcome.6796104a.svg": "/react-skychat/static/media/intro-welcome.6796104a.svg",
+    "static/media/iu.626b9363.jpg": "/react-skychat/static/media/iu.626b9363.jpg",
     "static/media/jennie.87f142fb.png": "/react-skychat/static/media/jennie.87f142fb.png",
     "static/media/jisoo.1822cfea.png": "/react-skychat/static/media/jisoo.1822cfea.png",
     "static/media/lisa.392ab396.png": "/react-skychat/static/media/lisa.392ab396.png",
@@ -29,8 +30,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.db45380e.js",
-    "static/js/2.3768282c.chunk.js",
-    "static/css/main.5956a979.chunk.css",
-    "static/js/main.498e5ea8.chunk.js"
+    "static/js/2.09b0dce6.chunk.js",
+    "static/css/main.3f8c598b.chunk.css",
+    "static/js/main.fa6d36d3.chunk.js"
   ]
 }
