@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './button.scss';
 
 Button.propTypes = {
     type: PropTypes.oneOf(['primary', 'outline', 'default', 'blur']),

@@ -3,7 +3,6 @@ import { IoArrowBack } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleInfoBar } from '../../../../app/ControlSlice';
 import { Avatar } from '../../../../components';
-import './infobar.scss';
 
 function SubContent(props) {
     const dispatch = useDispatch();
@@ -20,7 +19,7 @@ function SubContent(props) {
             <div className="info-bar__top">
                 <IoArrowBack
                     className="icon-back"
-                    onClick={() => handleCloseInfoBarOnMobile()}
+                    onClick={handleCloseInfoBarOnMobile}
                 />
                 <h3 className="title">
                     Friend Profile
@@ -47,7 +46,7 @@ function SubContent(props) {
             </span>
             <div
                 className={`hidden-click ${isShowInfoBar ? 'active' : ''}`}
-                onClick={() => handleCloseInfoBarOnMobile()}
+                onClick={handleCloseInfoBarOnMobile}
             >
             </div>
         </div>

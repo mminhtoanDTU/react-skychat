@@ -8,10 +8,11 @@
 
     & .msg {
         padding: 15px 15px;
-        background-color: var(--white-color);
+        background-color: $white-color;
         border-radius: 15px;
-        color: var(--text-color);
+        color: $text-color;
         position: relative;
+        line-height: 1.3;
 
 
         &:hover+.times {
@@ -33,7 +34,7 @@
 
     & .times {
         background-color: #5c5c5ca2;
-        color: var(--white-color);
+        color: $white-color;
         font-size: 13px;
 
         min-width: 70px;

@@ -2,12 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoading, toggleModalFriends } from '../../../../../app/ControlSlice';
 import IntroImage from '../../../../../assets/images/intro-welcome.svg';
-import './welcome.scss';
 
 function Welcome(props) {
     const dispatch = useDispatch();
     const { isModalFriends } = useSelector(state => state.control);
-    const rooms = []
+    const { rooms } = useSelector(state => state.rooms);
 
     const handleOpenModalFriends = () => {
         if (!isModalFriends) {
@@ -21,7 +20,7 @@ function Welcome(props) {
     }
 
     return (
-        <div className="main-content">
+        <section className="main-content">
             <div className="welcome-wrap">
                 <div className="welcome__content">
                     <h4 className="title">
@@ -33,7 +32,7 @@ function Welcome(props) {
                     {!rooms.length ? (
                         <div
                             className="btn-action"
-                            onClick={() => handleOpenModalFriends()}
+                            onClick={handleOpenModalFriends}
                         >
                             Create a room
                         </div>
@@ -47,7 +46,7 @@ function Welcome(props) {
                 >
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

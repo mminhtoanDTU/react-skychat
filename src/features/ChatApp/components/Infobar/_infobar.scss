@@ -11,7 +11,7 @@
 
     &__top {
         height: 65px;
-        border-bottom: 1px solid var(--gray-color);
+        border-bottom: 1px solid $gray-color;
         display: flex;
         align-items: center;
 
@@ -22,7 +22,7 @@
             overflow: hidden;
 
             margin: 0 15px;
-            color: var(--primary-color);
+            color: $primary-color;
             cursor: pointer;
             transition: background .25s linear;
 
@@ -37,7 +37,7 @@
         }
 
         & .title {
-            color: var(--text-color);
+            color: $text-color;
             font-size: 17px;
         }
     }
@@ -65,7 +65,7 @@
         }
 
         & .link {
-            color: var(--primary-color);
+            color: $primary-color;
             font-size: 16px;
             padding: 10px;
             cursor: default;
@@ -80,7 +80,7 @@
     text-align: center;
 
     & a {
-        color: var(--primary-color);
+        color: $primary-color;
     }
 }
 

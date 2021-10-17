@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './itemroom.scss';
-import Avatar from '../../../../../components/Avatar';
+import Avatar from '../../../../components/Avatar';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 
@@ -11,8 +10,7 @@ ItemRoom.propTypes = {
 };
 
 function ItemRoom(props) {
-    const { room, onClick } = props;
-    const { selectedRoom } = useSelector(state => state.rooms);
+    const { room, onClick, currentRoomId } = props;
 
     const convertTime = (time) => {
         if (time) {
@@ -22,7 +20,7 @@ function ItemRoom(props) {
 
     return (
         <div
-            className={`item-room ${selectedRoom.uid === room.uid ? 'active' : ''}`}
+            className={`item-room ${currentRoomId === room.uid ? 'active' : ''}`}
             onClick={() => onClick(room)}
         >
             <Avatar

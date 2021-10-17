@@ -1,17 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { MdModeEdit } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAvatar } from '../../../app/UserSlice';
 import { Avatar } from '../../../components';
-import PopAvatar from './PopAvatar';
+import { Avatars } from '../../../Data/Avatars';
+import SelectItem from './SelectItem';
 
-FieldAvatar.propTypes = {
+SelectField.propTypes = {
 
 };
 
-function FieldAvatar(props) {
+function SelectField(props) {
     const [isOpen, setIsOpen] = useState(false);
     const { userInfo } = useSelector(state => state.user);
     const btnRef = useRef(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isOpen) {
@@ -34,6 +37,10 @@ function FieldAvatar(props) {
         setIsOpen(!isOpen);
     }
 
+    const handleSelectAvatar = (imageUrl) => {
+        dispatch(setAvatar(imageUrl))
+    }
+
     return (
         <div className="login-select">
             <span className="login-label">
@@ -49,10 +56,20 @@ function FieldAvatar(props) {
                     className="icon-edit"
                     onClick={(e) => handleTogglePopup(e)}
                 />
-                {isOpen && <PopAvatar />}
+                {isOpen && (
+                    <ul className="pop-avatar">
+                        {Avatars.map(item => (
+                            <SelectItem
+                                key={item}
+                                imageUrl={item}
+                                handleSelect={handleSelectAvatar}
+                                currentAvatar={userInfo.photoURL}
+                            />
+                        ))}
+                    </ul>)}
             </div>
         </div>
     );
 }
 
-export default FieldAvatar;
+export default SelectField;

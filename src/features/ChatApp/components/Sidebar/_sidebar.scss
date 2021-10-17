@@ -1,0 +1,215 @@
+.logo {
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 10px;
+
+    & .title {
+        font-size: 28px;
+        font-weight: 500;
+        color: $primary-color;
+        margin-left: 13px;
+    }
+}
+
+.side-bar {
+    width: 330px;
+    height: 100%;
+    padding: 10px;
+    background-color: #fff;
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+    }
+
+    &__search {
+        margin-top: 14px;
+    }
+
+    &__add {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+
+        & .text {
+            color: #555;
+            font-size: 17px;
+        }
+
+
+    }
+
+    &__list {
+        height: calc(100vh - 215px);
+        overflow-y: auto;
+        position: relative;
+
+        & .sub-text {
+            color: #888;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+
+            & span {
+                color: $primary-color;
+                cursor: pointer;
+            }
+        }
+
+        & .not-match {
+            color: #999;
+            text-align: center;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+    }
+
+    // Responsive
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+}
+
+// 
+.user-info {
+    position: relative;
+    cursor: pointer;
+}
+
+// Pop Setting
+.pop-setting {
+    position: absolute;
+    right: -5px;
+    top: 50px;
+    width: 200px;
+    padding: 0 15px;
+
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    z-index: 999999;
+    cursor: default;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        right: 19px;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        transform: rotate(45deg);
+        box-shadow: rgba(0, 0, 0, .16) 0px 0px 3px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: .3px;
+        right: 16px;
+        width: 16px;
+        height: 9px;
+        background: #FFF;
+        z-index: 1;
+    }
+
+    &__item {
+        font-size: 16px;
+        padding: 18px 0;
+        cursor: pointer;
+        color: #333;
+        display: flex;
+        align-items: center;
+        transition: color .15s linear;
+
+        & span {
+            margin-left: 10px;
+            font-weight: 500;
+        }
+
+        & .icon {
+            font-size: 20px;
+            margin-right: 7px;
+        }
+
+        &:hover {
+            color: $primary-color;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #eee;
+        }
+    }
+}
+
+//
+.item-room {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 1px;
+    transition: background-color .1s ease-in;
+    user-select: none;
+
+    @media screen and (min-width: 768px) {
+        &.active {
+            background-color: #F5F5F5;
+        }
+
+    }
+
+    &:hover {
+        background-color: #efefef;
+    }
+
+    & .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        overflow: hidden;
+    }
+
+    & .name {
+        font-size: 16px;
+        color: $text-color;
+        margin-left: 10px;
+    }
+
+    & .time {
+        margin-left: auto;
+        font-size: 13px;
+        color: #777;
+        font-weight: 300;
+    }
+}

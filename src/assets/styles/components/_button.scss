@@ -9,8 +9,8 @@
     text-decoration: none;
     font-size: 13px;
     line-height: 1.5;
-    background-color: var(--white-color);
-    color: var(--text-color);
+    background-color: $white-color;
+    color: $text-color;
 
     border: 1px solid transparent;
     border-radius: 4px;
@@ -21,51 +21,51 @@
 
     // Btn type 
     &-primary {
-        background-color: var(--primary-color);
-        color: var(--white-color);
+        background-color: $primary-color;
+        color: $white-color;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
         box-shadow: 0 2px #0000000b;
 
         &:hover {
-            background: var(--primary-hover-color);
-            border-color: var(--primary-hover-color);
+            background: $primary-hover-color;
+            border-color: $primary-hover-color;
         }
 
         &:active {
-            background: var(--primary-active-color);
-            border-color: var(--primary-active-color);
+            background: $primary-active-color;
+            border-color: $primary-active-color;
         }
     }
 
     &-outline {
-        background-color: var(--white-color);
+        background-color: $white-color;
         color: #272727;
         border-color: #D9D9D9;
         transition: all .25s linear;
         min-width: 85px;
 
         &:hover {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+            color: $primary-color;
+            border-color: $primary-color;
         }
 
         &:active {
-            color: var(--primary-active-color);
-            border-color: var(--primary-active-color);
+            color: $primary-active-color;
+            border-color: $primary-active-color;
         }
     }
 
     &-blur {
-        color: var(--primary-color);
+        color: $primary-color;
         position: relative;
         border-color: #ddd;
 
         &:hover {
-            border-color: var(--primary-hover-color);
+            border-color: $primary-hover-color;
         }
 
         &:active {
-            color: var(--primary-active-color);
+            color: $primary-active-color;
         }
 
         &::before {

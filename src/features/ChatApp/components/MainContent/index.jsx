@@ -8,7 +8,6 @@ import { MessagesScript } from '../../../../Data/Messages';
 import { setSessionStorage } from '../../../../services';
 import ContentBody from './ContentBody';
 import InputMessage from './InputMessage';
-import './maincontent.scss';
 import Welcome from './Welcome';
 
 function randomIndex(prev) {
@@ -25,7 +24,7 @@ function MainContent(props) {
     const { isShowInfoBar, isShowMessage } = useSelector(state => state.control);
     const ScriptDownRef = useRef();
 
-    //Message autoscript
+    //Message reply autoscript
     useEffect(() => {
         if (Object.keys(selectedRoom).length !== 0) {
             if (ScriptDownRef.current) {
@@ -44,7 +43,7 @@ function MainContent(props) {
         }
 
         return () => clearTimeout(ScriptDownRef.current);
-    }, [hasSender, dispatch])
+    }, [hasSender, dispatch]);
 
     const handleOnInfobar = () => {
         dispatch(toggleInfoBar(!isShowInfoBar));
@@ -64,7 +63,7 @@ function MainContent(props) {
             <div className="main-content__head">
                 <IoArrowBack
                     className="icon-back"
-                    onClick={() => handleCloseMessageOnMobile()}
+                    onClick={handleCloseMessageOnMobile}
                 />
                 <div className="main-info">
                     <Avatar
@@ -82,7 +81,7 @@ function MainContent(props) {
                     </div>
                     <div
                         className={`wrap-icon ${isShowInfoBar ? 'active' : ''}`}
-                        onClick={() => handleOnInfobar()}
+                        onClick={handleOnInfobar}
                     >
                         <IoEllipsisHorizontal size="30px" />
                     </div>

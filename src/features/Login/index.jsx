@@ -5,9 +5,8 @@ import { loginSetUser } from '../../app/UserSlice';
 import Intro from '../../assets/images/intro-welcome.svg';
 import { Button, Loading } from '../../components';
 import { setLocalStorage } from '../../services';
-import FieldInput from './FieldInput';
-import './login.scss';
-import SelectAvatar from './SelectAvatar';
+import InputField from './components/InputField';
+import SelectField from './components/SelectField';
 
 function Login(props) {
     const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +40,7 @@ function Login(props) {
 
     return (
         <div className="login">
-            <div className="login-intro" style={{ backgroundImage: `url(${Intro})` }}></div>
+            <div className="login-intro" style={{ backgroundImage: `url(${Intro})` }} />
             <div className="login-content">
                 <h3 className="content-title">Login</h3>
                 <p className="content-subtitle">
@@ -51,8 +50,8 @@ function Login(props) {
                     className="login-content__form"
                     onSubmit={handleOnSubmit}
                 >
-                    <SelectAvatar />
-                    <FieldInput />
+                    <SelectField />
+                    <InputField />
                     <Button
                         isSubmit
                         name="Login"

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './itemmessage.scss'
+
 ItemMessage.propTypes = {
     message: PropTypes.string,
     time: PropTypes.string,

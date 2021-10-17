@@ -1,0 +1,8 @@
+@import './components/Sidebar/sidebar';
+@import './components/MainContent/maincontent';
+@import './components/Infobar/infobar';
+
+.app-wrapper {
+    display: flex;
+
+}

@@ -3,8 +3,6 @@ import { IoHappy, IoPaperPlane } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { inputChange } from '../../../../../app/RoomSlice';
 import { setSessionStorage } from '../../../../../services';
-import './inputmessage.scss';
-
 
 function InputMessage(props) {
     const dispatch = useDispatch();

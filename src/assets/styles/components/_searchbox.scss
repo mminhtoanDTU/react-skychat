@@ -8,8 +8,8 @@
         padding: 10px 40px 10px 20px;
         width: 100%;
 
-        background: var(--gray-color);
-        color: var(--text-color);
+        background: $gray-color;
+        color: $text-color;
         font-size: 16px;
         line-height: 1.4;
 
@@ -32,7 +32,7 @@
         }
 
         &:hover {
-            color: var(--primary-color);
+            color: $primary-color;
         }
     }
 }

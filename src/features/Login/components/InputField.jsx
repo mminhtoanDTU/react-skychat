@@ -23,7 +23,7 @@ function FieldInput(props) {
                 className={`input ${isError ? 'error' : ''}`}
                 placeholder="What is your name?"
                 onChange={(e) => setValue(e.target.value)}
-                onBlur={() => handleCheckValid()}
+                onBlur={handleCheckValid}
                 required
             />
             <p className={`feedback-input ${isError ? 'error' : ''}`}>

@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import './itemfriend.scss';
-import Avatar from '../../Avatar';
-import Button from '../../Button';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import Avatar from '../Avatar';
+import Button from '../Button';
 
 ItemFriend.propTypes = {
     user: PropTypes.object,
@@ -31,14 +30,14 @@ function ItemFriend(props) {
                     name="Add Friend"
                     type="primary"
                     className="item-friend__add"
-                    onClick={onAddClick}
+                    onClick={() => onAddClick(user.uid)}
                 />
             ) : (
                 <Button
                     name="Message"
                     type="outline"
                     className="item-friend__add"
-                    onClick={onChatClick}
+                    onClick={() => onChatClick(user)}
                 />
             )}
         </li>

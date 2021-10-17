@@ -8,8 +8,7 @@ import Logo from '../../../../assets/images/logo-icon.png';
 import { Button, Loading, SearchBox } from '../../../../components';
 import FormatString from '../../../../Logic/FormatString';
 import ItemRoom from './ItemRoom';
-import './sidebar.scss';
-import UserInfo from './UserInfo';
+import UserSetting from './UserSetting';
 
 
 function Sidebar(props) {
@@ -17,7 +16,7 @@ function Sidebar(props) {
     const [isLoading, setIsLoading] = useState(false)
     const [filter, setFilter] = useState('');
     const { userInfo, isLogin } = useSelector(state => state.user);
-    const { rooms } = useSelector(state => state.rooms);
+    const { rooms, selectedRoom } = useSelector(state => state.rooms);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -61,7 +60,7 @@ function Sidebar(props) {
                     <img src={Logo} alt="Logo Sky Chat" />
                     <span className="title">Sky Chat</span>
                 </Link>
-                {isLogin && <UserInfo userInfo={userInfo} />}
+                {isLogin && <UserSetting userInfo={userInfo} />}
             </div>
 
             <SearchBox
@@ -74,7 +73,7 @@ function Sidebar(props) {
                     Messages
                 </h5>
                 <Button
-                    onClick={() => handleOpenModalFriends()}
+                    onClick={handleOpenModalFriends}
                     name="New"
                     icon={<AiOutlinePlus />}
                     type="blur"
@@ -86,7 +85,7 @@ function Sidebar(props) {
                 ) : rooms.length === 0 ? (
                     <p className="sub-text">
                         List is empty.
-                        <span onClick={() => handleOpenModalFriends()}> Add new</span>
+                        <span onClick={handleOpenModalFriends}> Add new</span>
                     </p>
                 ) : isLoading ? (
                     <Loading />
@@ -96,6 +95,7 @@ function Sidebar(props) {
                             <ItemRoom
                                 key={room.uid}
                                 room={room}
+                                currentRoomId={selectedRoom.uid}
                                 onClick={handleSelectedRoom}
                             />
                         ))
@@ -103,8 +103,6 @@ function Sidebar(props) {
                         <p className="not-match">Does not match any results!</p>
                     )
                 )}
-
-
             </div>
         </div>
     );

@@ -10,6 +10,7 @@ function ContentBody(props) {
     const { selectedRoom, hasSender, hasReply } = useSelector(state => state.rooms);
     const { userInfo } = useSelector(state => state.user);
     const loaderRef = useRef(null);
+
     //download message
     useEffect(() => {
         const allMessages = getSessionStorage('messages') || [];
@@ -17,6 +18,7 @@ function ContentBody(props) {
         setMessages(currentRoomMessage);
     }, [selectedRoom, hasSender, hasReply]);
 
+    //show mess typing loading
     useEffect(() => {
         if (hasSender !== '') {
             setLoader(true);

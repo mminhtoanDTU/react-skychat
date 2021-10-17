@@ -12,7 +12,7 @@ import FormatString from '../../Logic/FormatString';
 import { getLocalStorage, setArrayLocalStorage } from '../../services';
 import SearchBox from '../SearchBox';
 import ItemFriend from './ItemFriend';
-import './modalfriends.scss';
+
 
 
 function ModalFriends(props) {
@@ -121,7 +121,7 @@ function ModalFriends(props) {
                 </Link>
                 <div
                     className="icon"
-                    onClick={() => handleOnModalFriends()}
+                    onClick={handleOnModalFriends}
                 >
                     <IoArrowBack />
                 </div>
@@ -155,8 +155,8 @@ function ModalFriends(props) {
                         <ItemFriend
                             key={user.uid}
                             user={user}
-                            onAddClick={() => handleAddFriend(user.uid)}
-                            onChatClick={() => handleClickMessage(user)}
+                            onAddClick={handleAddFriend}
+                            onChatClick={handleClickMessage}
                         />
                     ))
                 ) : (

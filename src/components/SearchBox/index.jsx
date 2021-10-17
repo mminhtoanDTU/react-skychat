@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { IoCloseCircle, IoSearch } from 'react-icons/io5';
-import './searchbox.scss';
+
 
 function SearchBox(props) {
     const { placeholder, className, onSubmit } = props;
@@ -40,7 +40,7 @@ function SearchBox(props) {
             ) : (
                 <IoCloseCircle
                     className="search-box__icon close"
-                    onClick={() => handleResetSearch()}
+                    onClick={handleResetSearch}
                 />
             )}
         </div>
